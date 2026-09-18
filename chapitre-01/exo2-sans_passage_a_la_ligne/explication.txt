@@ -1,0 +1,8 @@
+ce qui change apres l'execution de mon programme :
+sans les \n,"Kuete" et "Yaoundé"s'affichent colles l"un àl'autre sur une seule ligne,sans espace ni separation 
+pourquoi l'invité de commande se colle (ou apparait juste apres):printf affiche exactement le texte donné,sans jamis ajouter 
+automatiquement de retour a la ligne .le terminal affiche sa prochaine invite juste apres le dernier carctere écrit à l'ecran comme 
+le programme n'a aucun \n .Mais on remarqueras que dans powershell de windows,cette erreur n'implique pas l'invité de commande 
+mais l'invite de commande est ecrit a la ligne suivante mais par contre "Kuete" et "Yaoundé" sont bien coller et ecrit sur la meme ligne
+conclusion: ce n'est pas un bug maisc'est le comportement normal de printf qui ne fait que ce demande de faire normalement sans ajouter
+rien de plus .
