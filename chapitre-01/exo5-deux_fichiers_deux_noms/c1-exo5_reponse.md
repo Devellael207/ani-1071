@@ -1,18 +1,22 @@
  Compilation 1:
  >clang++ -std=c++17 -Wall c1-exo5_main.cpp -o essai_un
+ 
  (Aucune sortie, la compilation a reussi)
 
  Execution 1:
- > .\essai_un
- cours de game programming a ENSPY
 
+ > .\essai_un
+
+ cours de game programming a ENSPY
 
  Compilation 2 :
  >clang++ -std=c++17 -Wall c1-exo5-main.cpp -o essai_deux
+
  (Aucune sortie:la compilation a reussi)
 
  Execution 2:
  > .\essai_deux
+ 
  cours de gamme programming a ENSPY
 
  
