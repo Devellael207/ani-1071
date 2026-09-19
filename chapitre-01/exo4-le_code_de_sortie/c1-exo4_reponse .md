@@ -1,0 +1,3 @@
+LE CODE DE SORTIR est un nombre que le programme renvoie au systeme d'exploitaion à sa fin, sans passer d'abord a l-affichage à l'ecran.
+Prenons l'exemple d'un script  qui enchaine plusieurs programmes il peut donc lire ce nombre pour savoir s'il dois continuer et si le programme precedant a reussi comme (0) par exemple qui indique le programme a reussi ou ça peut etre un  nombres comme (1,2,3...) qui indique une erreur ou probleme specifique rencontrer peu etre 1=erreur de resau;2=erreur d'ecriture ... mais dans ce devoir nous avons utiliser 3
+ainsi donc en conclusion cela permet donc au script de decider de lui meme de manier automatique s'il continue a l'etape suivante,s'il s'arrete ou reagit differement selon la valeur reçu (1,2...)
