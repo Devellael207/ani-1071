@@ -1,0 +1,9 @@
+#include <cstdio>
+
+int main(){
+    int a = 5
+    int b = 3
+    printf("%d\n", a)
+    printf("%d\n",b)
+    return 0 
+}
