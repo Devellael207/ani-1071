@@ -1,8 +1,6 @@
 LES AVERTISSEMENTS (la difference entre un avertissement et une erreur )
 
-
 commande:
-
 clang++ -std=c++17 -Wall -Wextra c1-exo10_main.cpp -o progamme
 
 resultat:
@@ -11,16 +9,13 @@ c1-exo10_main.cpp:4:9: warning: unused variable 'variable_gamme_programming' [-W
     4 |     int variable_gamme_programming = 45;
       |         ^~~~~~~~~~~~~~~~~~~~~~~~~~
 1 warning generated.
-
 Le progamme a été compilé normalement et l'executable a été bien crée (programme.exe) et ce malgré cet avertissement .
 
 la difference entre un avertissement et une erreur :
 
 Une ERREUR bloque complètement la compilation : le compilateur refuse de produire un exécutable tant que l'erreur n'est pas corrigée.c'est le cas quand le code ne respecte pas les règles du language (syntaxe incorrecte,référence à quelque chose d'inexistant).Par exemple je vais faire expres de faire une erreur à fin qu'on puisse faire plus de differece meme au niveau du message d'erreur afficher:le nom du fichier de mon programme pour cree l'erreur est c1-exo10_erreur.cpp :
-
-compilation du fichier d'erreur:
-
-clang++ -std=c++17 -Wall -Wextra c1-exo10_erreur.cpp -o programme_erreur
+Compilation du fichier d'erreur:
+Clang++ -std=c++17 -Wall -Wextra c1-exo10_erreur.cpp -o programme_erreur
 
 resultat:
 
