@@ -29,4 +29,4 @@ Ici,aucun exécutable n'a été crée(contrairement au cas de l'avertissement) :
 
 Un AVERTISSEMENT n'empeche pas la compilation :le programme est quand meme produit et fonctionne .Il signale simplement quelque chose de suspect ou d'inhabituel dans le code(ici par exemple une variable declaree mais jamais utilisée),mais il est important de noté qu'il ne sagis pas d'une faute de syntaxe,mais qui pourrait indiquer une erreur liéé au programmeur(donc supposons moi) il peut donc sagir (d'une variable oubliée,un code qui ne sert à rien...).
 
-on peut alors se poser la question pourquoi l'avertissement existe vu qu'il ne bloque rien ? Alors je dirais que c'est pour permettre a celui qui ecris le code (programmeur) de répere des oublie ou des maladresse avant qu'elle ne devient un vrai probleme plutard mais tous cela sans bloqué la suite du travaille.
+on peut alors se poser la question pourquoi l'avertissement existe vu qu'il ne bloque rien ? Alors je dirais que c'est pour permettre a celui qui ecris le code (programmeur) de répere des oublie ou des maladresse avant qu'elle ne devient un vrai probleme plutard mais tous cela sans bloqué la suite du travaille en cours.
