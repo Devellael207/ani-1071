@@ -1,0 +1,6 @@
+sans tableau, essai 1 : 43185
+sans tableau, essai 2 : 43205
+sans tableau, essai 3 : 43206
+avec tableau, essai 1 : 511
+avec tableau, essai 2 :512
+avec tableau, essai 3 :512

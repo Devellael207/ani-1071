@@ -1,0 +1,22 @@
+# Mes six mesures :
+sans tableau, essai 1 : 43185
+sans tableau, essai 2 : 43205
+sans tableau, essai 3 : 43206
+avec tableau, essai 1 : 511
+avec tableau, essai 2 : 512
+avec tableau, essai 3 : 512
+Les valeurs bougent très peu d'un lancement à l'autre (de l'ordre de 20 appels sur 43 000 sans tableau, 1 sur 512 avec tableau). 
+C'est une observation normale, pas un défaut : la pile de départ n'est pas exactement identique à chaque exécution. 
+L'écart entre les deux variantes, lui, est énorme : environ 43 200 appels contre 512.
+
+# Pourquoi le tableau change la profondeur :
+La pile a une taille totale fixe. D'après objdump, SizeOfStackReserve vaut 0x200000, soit 2 097 152 octets (2 Mo). 
+Chaque appel récursif consomme un cadre sur cette pile, donc la profondeur maximale vaut environ la taille de la pile divisée par la taille d'un cadre. 
+Sans tableau : 2 097 152 / 43 200, soit environ 48 octets par cadre (adresse de retour, paramètre n et espace réservé pour les appels). Avec tableau : 2 097 152 / 512 = 4 096 octets par cadre.
+La différence, environ 4 048 octets, correspond au tableau int gros[1000] (1000 x 4 = 4000 octets). Le tableau rend donc chaque cadre environ 85 fois plus gros, et la profondeur atteinte est divisée par à peu près le même facteur (43 200 / 512 = 84). 
+Plus un cadre est gros, moins il y en a qui tiennent dans une pile de taille fixe.
+
+# Ce que j'en retiens pour une fonction récursive sérieuse :
+Une fonction récursive doit toujours avoir un cas d'arrêt atteint après un nombre d'appels borné, car la pile est limitée : sans cas d'arrêt, le programme meurt brutalement.
+Il faut aussi garder les cadres petits : ne jamais mettre de gros tableaux en variables locales dans une fonction récursive (les allouer sur le tas ou les passer en paramètre), sinon la profondeur possible s'effondre.
+Enfin, avant de récurser en profondeur, il faut estimer taille de la pile / taille d'un cadre pour savoir si la profondeur voulue est réaliste, et sinon préférer une boucle.
