@@ -1,0 +1,21 @@
+Ce que j'ai mis dans le .h :
+J'ai mis dans aire.h uniquement les déclarations (prototypes) des trois fonctions : double aireRectangle(double, double), double aireDisque(double) et double aireTriangle(double, double). 
+Une déclaration dit au compilateur le nom de la fonction, le type et le nombre de ses paramètres et son type de retour, mais elle ne contient pas le corps, donc pas le calcul. 
+Je n'ai rien mis d'autre, parce que le .h est un contrat : il décrit ce que le module aire propose, et pas comment il le fait. J'ai aussi entouré le contenu d'une garde d'inclusion (#ifndef AIRE_H / #define AIRE_H / #endif). 
+Les définitions, avec le code des calculs, sont dans aire.cpp, qui inclut aire.h pour que le compilateur vérifie que les définitions correspondent bien aux déclarations.
+
+Ce qui se passe si j'enlève la garde :
+Sans la garde, rien ne m'empêche d'inclure aire.h deux fois dans le même fichier source, directement ou indirectement (par exemple si main.cpp inclut aire.h et un autre en-tête qui inclut lui aussi aire.h). 
+Le préprocesseur recopie alors tout le contenu du .h à chaque #include, donc les déclarations apparaissent deux fois. Dans ce petit exercice, cela passe encore, parce que C++ autorise de déclarer plusieurs fois la même fonction.
+ Mais ce n'est qu'un hasard lié au contenu actuel : dès que l'en-tête contient une struct, une classe, un enum ou une définition, la deuxième copie provoque une erreur de redéfinition. La garde règle le problème : à la première inclusion, AIRE_H n'est pas défini, 
+ donc le contenu est lu et AIRE_H est défini ; aux inclusions suivantes, AIRE_H existe déjà, donc le préprocesseur saute tout jusqu'au #endif. 
+ C'est une bonne habitude à prendre dès le premier en-tête, parce que les projets grossissent et les chaînes d'inclusion deviennent vite difficiles à suivre à la main.
+
+Pourquoi main.cpp compile sans voir le corps des fonctions :
+La compilation se fait fichier par fichier, et chaque .cpp est compilé séparément en un fichier objet.
+ Pour compiler un appel comme aireDisque(rayon), le compilateur a seulement besoin de connaître la signature de la fonction : son nom, ses paramètres et son type de retour, afin de vérifier que l'appel est correct et de savoir quel type de valeur il reçoit.
+  Cette information vient de la déclaration dans aire.h, inclus par main.cpp. Le corps de la fonction n'est pas nécessaire à ce moment-là : 
+ le compilateur laisse dans le fichier objet une référence vers aireDisque, à résoudre plus tard. C'est l'éditeur de liens qui, dans une seconde étape, relie cette référence à la définition réelle, 
+ compilée dans aire.cpp. Voilà pourquoi la commande de compilation doit nommer main.cpp et aire.cpp ensemble : si on compile main.cpp seul, la compilation réussit mais l'édition de liens échoue avec une erreur de référence non définie,
+  ce qui montre bien que la déclaration suffit au compilateur,
+  alors que la définition est indispensable à l'éditeur de liens. Cette séparation permet aussi de modifier le corps d'une fonction dans aire.cpp sans avoir à recompiler les fichiers qui n'ont changé que par leur usage de la fonction.
