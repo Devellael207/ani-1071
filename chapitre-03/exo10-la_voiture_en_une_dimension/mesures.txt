@@ -1,0 +1,6 @@
+t : 0, vitesse : 0.0000, position : 0.0000
+t : 1, vitesse : 2.0000, position : 1.0000
+t : 2, vitesse : 4.0000, position : 4.0000
+t : 3, vitesse : 6.0000, position : 9.0000
+t : 4, vitesse : 8.0000, position : 16.0000
+t : 5, vitesse : 10.0000, position : 25.0000

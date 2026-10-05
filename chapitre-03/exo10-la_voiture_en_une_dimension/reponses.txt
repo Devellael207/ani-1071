@@ -1,0 +1,14 @@
+Mes six relevés :
+Pour un départ arrêté avec une accélération de 2, la vitesse vaut 0, 2, 4, 6, 8, 10 
+et la position vaut 0, 1, 4, 9, 16, 25 pour t = 0 à 5. 
+La vitesse croît de façon régulière (v = 2t) alors que la position croît de plus en plus vite (x = t²).
+
+Pourquoi position n'appelle pas vitesse :
+Avec une accélération, la vitesse change pendant le trajet. 
+Multiplier la vitesse finale par t donnerait x0 + 6 x 3 = 18 au lieu de 9 pour t = 3 : on compterait comme si la voiture roulait déjà à vitesse finale pendant tout le trajet. 
+C'est le terme 0.5 * a * t * t qui tient compte de la vitesse moyenne. Les deux formules sont donc indépendantes, 
+et chacune se calcule directement à partir de x0, v0, a et t.
+
+Ce qu'une fonction pure me garantit :
+Avec les mêmes arguments, j'obtiens toujours le même résultat, car la fonction ne lit ni ne modifie aucun état caché (pas de variable globale ni static). 
+sJe peux donc la tester seule, l'appeler dans n'importe quel ordre ou plusieurs fois, et la réutiliser plus tard dans une classe ou pour animer quelque chose à l'écran sans mauvaise surprise.
