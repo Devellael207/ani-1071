@@ -1,0 +1,14 @@
+Mes douze mesures :
+Les mesures enregistrées dans le fichier mesures.txt montrent que pour la première boucle (position), 
+les temps entre le tableau de structures et les tableaux parallèles sont très proches. En revanche, pour la seconde boucle (vie), 
+le tableau de structures prend environ quatre fois plus de temps que les tableaux parallèles sur les trois essais successifs.
+
+Ou l'ecart est le plus grand, et pourquoi :
+L'écart est maximal sur la boucle à un seul champ (la durée de vie). Cela s'explique par le chargement en cache du processeur (cache CPU). 
+Dans un tableau de structures, pour accéder uniquement à la vie, le processeur est obligé de charger en cache tous les champs intercalés inutiles (x, y, vx, vy, couleur), ce qui gaspille de la bande passante mémoire. 
+Dans les tableaux parallèles, les données de la vie sont contiguës en mémoire : le processeur charge uniquement des données utiles (densité de cache optimale), ce qui accélère considérablement les calculs vectoriels et séquentiels.
+
+Quand je choisirais quand meme le tableau de structures :
+Je choisirais quand même le tableau de structures (SoS) lorsqu'on manipule des entités logiques globales où l'on a besoin de passer l'objet entier en paramètre à des fonctions, 
+ou lorsque l'on gère des collections complexes avec de l'héritage, du polymorphisme, ou des allocations dynamiques orientées objet, car cela améliore grandement la lisibilité du code,
+ la maintenance et l'encapsulation, au détriment d'une micro-optimisation de performance qui n'est pas toujours nécessaire.
