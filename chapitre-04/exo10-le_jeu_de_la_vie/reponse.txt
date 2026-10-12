@@ -1,0 +1,12 @@
+Ma regle de bord :
+Pour gérer les bords de la grille, j'ai choisi l'option où toutes les cellules situées en dehors des limites de la grille sont considérées comme mortes ('.'). 
+Cela évite des calculs d'indices complexes ou des effets de bord toroïdaux indésirables, permettant une simulation propre et délimitée.
+
+Ce que fait le planeur en quatre generations :
+Au fil des quatre premières générations, le motif du planeur (glider) subit des transformations géométriques successives qui modifient son orientation tout en préservant sa structure de base.
+À la quatrième génération, il s'est déplacé d'exactement une case vers le bas et d'une case vers la droite en diagonale, illustrant la propriété fondamentale de propagation et de déplacement de ce motif iconique.
+
+Pourquoi deux grilles et pas une :
+L'utilisation de deux grilles (une pour la lecture de l'état actuel et une seconde pour l'écriture de la génération suivante) est indispensable pour garantir le synchronisme temporel de l'automate cellulaire. 
+Si l'on ne travaillait qu'avec une seule grille, les modifications apportées aux premières cellules fausseraient instantanément le calcul des voisins pour les cellules suivantes au cours de la même étape, 
+corrompant totalement les règles du jeu.
