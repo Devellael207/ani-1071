@@ -1,0 +1,13 @@
+Le calcul de mon indice :
+Pour accéder à une case située à la colonne x et à la ligne y dans un tableau à une dimension représentant une grille bidimensionnelle, 
+on utilise la formule arithmétique y * largeur + x. Cela permet de sauter toutes les lignes précédentes (y fois la largeur totale) 
+et d'ajouter le décalage horizontal x pour atteindre exactement la position souhaitée de manière séquentielle et linéaire en mémoire.
+
+Pourquoi un seul tableau et pas un tableau de tableaux :
+Stocker une carte dans un unique tableau à une dimension garantit un espace mémoire contigu, ce qui optimise grandement les performances matérielles grâce à la localité cache du processeur. 
+Cela évite aussi la complexité de gestion, d'allocation dynamique multiple et les risques de fuites mémoire inhérents aux tableaux de tableaux (tableaux de pointeurs).
+
+Ce qui se passe si je confonds largeur et hauteur :
+Si l'on confond la largeur et la hauteur lors du calcul de l'indice (par exemple en utilisant x * hauteur + y à la place de y * largeur + x), 
+le programme va parcourir la grille de travers. Les sauts d'indices ne correspondront plus aux dimensions réelles, ce qui provoquera soit des lectures erronées de tuiles, 
+soit un dépassement des limites du tableau (segfault / lecture hors-limites) sans message d'erreur explicite.
