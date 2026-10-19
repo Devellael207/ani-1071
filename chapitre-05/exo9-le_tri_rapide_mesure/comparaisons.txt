@@ -1,0 +1,20 @@
+Apres compilation voici le resultat afficher
+--- Mesures sur tableaux aleatoires ---
+Taille 100 -> Selection : 4950 comps | Tri rapide : 707 comps
+Taille 1000 -> Selection : 499500 comps | Tri rapide : 10523 comps
+Taille 10000 -> Selection : 49995000 comps | Tri rapide : 155030 comps
+Taille 100000 -> Selection : 4999950000 comps | Tri rapide : 2040484 comps
+Tri rapide sur tableau deja trie (avec pivot median) : 113631 comps
+on peut alors ecrire plusieurs etiquette :
+
+Déjà trié :
+- Taille 10000 (avec un mauvais choix de pivot comme le dernier élément) : Le tri rapide s'effondre avec environ 50000000 de comparaisons (complexité en O(n^2)). 
+Avec un pivot médian, il reste efficace en O(n log n).
+
+Pourquoi :
+- Lorsque le tableau est déjà trié et qu'on choisit systématiquement le dernier élément comme pivot, chaque partition sépare le tableau en un sous-tableau de taille n-1 et un sous-tableau vide de taille 0. 
+L'arbre des appels récursifs devient alors complètement déséquilibré (de profondeur n au lieu de log n), ce qui détruit la performance du tri rapide et provoque son effondrement en complexité quadratique.
+
+Mon pivot :
+- En choisissant le pivot au milieu du tableau (ou de manière aléatoire) plutôt qu'à la fin, on évite que le pivot ne corresponde systématiquement au plus petit ou au plus grand élément d'un tableau déjà trié.
+ Le nouveau compte de comparaisons pour 10000 éléments passe ainsi d'environ 50 millions à seulement ~130 000 comparaisons, restaurant la performance optimale du tri rapide.
