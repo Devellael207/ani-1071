@@ -1,11 +1,18 @@
-Devant :
-- Position : {0.0, 5.0} | Réponse de voit : 1 (true)
+ Le resultat apres compilation est :
+  Devant : 1
+Cote : 0
+Derriere : 0
+Bord dedans : 1
+Bord dehors : 0
+on peut donc dire:
+ Devant :
+- Position : {0.0, 5.0} ,Réponse de voit : 1 (true)
 
 Côté :
-- Position : {5.0, 0.0} | Réponse de voit : 0 (false)
+- Position : {5.0, 0.0} ,Réponse de voit : 0 (false)
 
 Derrière :
-- Position : {0.0, -5.0} | Réponse de voit : 0 (false)
+- Position : {0.0, -5.0} , Réponse de voit : 0 (false)
 
 Bord :
 - Joueur juste dedans : {2.5, 5.0} | Réponse de voit : 1 (true)
