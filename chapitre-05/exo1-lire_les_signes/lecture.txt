@@ -1,0 +1,19 @@
+Prédictions :
+5 9
+9 9
+9 1
+
+Obtenu :
+5 9
+9 9
+9 1
+
+Écarts :
+aucun
+aucun
+aucun
+
+p = q :
+L'instruction p = q change l'adresse contenue dans le pointeur p pour qu'il pointe désormais vers la même variable que q
+ (c'est-à-dire la variable b). Elle laisse intactes les valeurs des variables a et b elles-mêmes au moment où elle est exécutée, 
+ ainsi que la valeur et l'adresse du pointeur q.
