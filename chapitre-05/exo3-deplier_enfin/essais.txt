@@ -1,0 +1,25 @@
+ voici ce que le programme affiche exactement apres sa compilation
+ deplier(0) -> x = 0, y = 0
+deplier(39) -> x = 39, y = 0
+deplier(40) -> x = 0, y = 1
+minMax -> min = 3, max = 19
+diviser(17, 5) -> succes = 1, quotient = 3, reste = 2
+diviser(-20, 6) -> succes = 1, quotient = -3, reste = -2
+Par zero : succes = 0, quotient = 999, reste = 888
+alors on peut traduire cela comme ceci:
+deplier :
+- Passé : i = 0, largeur = 40 | Écrit : x = 0, y = 0
+- Passé : i = 39, largeur = 40 | Écrit : x = 39, y = 0
+- Passé : i = 40, largeur = 40 | Écrit : x = 0, y = 1
+
+minMax :
+- Passé : tableau {12, 7, 19, 3, 15}, n = 5 | Écrit : min = 3, max = 19
+
+diviser :
+- Passé : a = 17, b = 5 | Écrit : succes = true, quotient = 3, reste = 2
+- Passé : a = -20, b = 6 | Écrit : succes = true, quotient = -3, reste = -2
+
+Par zéro :
+- Passé : a = 10, b = 0, quotient initial = 999, reste initial = 888
+- Obtenu : succes = false, quotient = 999, reste = 888
+- Obtenu : succes = false, quotient = 999, reste = 888
