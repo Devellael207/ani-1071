@@ -1,0 +1,19 @@
+Sortie :
+Somme = 56
+Maximum = 19
+Avant inversion : 1 2 3 4 5
+Apres inversion : 5 4 3 2 1
+longueur("bonjour") = 7, strlen = 7
+longueur("Yaoundé") = 7, strlen = 7
+
+Yaoundé :
+Le programme affiche 7 pour la chaîne "Yaoundé". 
+Bien que certains caractères accentués ou spécifiques puissent prendre plus d'un octect,
+le pointeur char* avance octet par octet jusqu'au caractère nul '\0'. Dans le cas de "Yaoundé", le 'é' est composé de deux octets en "UTF-8", 
+ce qui fait que strlen ou le parcours par octet brut peut renvoyer le nombre d'octets physiques plutôt que le nombre de caractères logiques affichés.
+ Cependant, la machine vérifie ici que le pointeur avance correctement et calcule la différence exacte entre le pointeur final et le pointeur de départ s.
+
+Pourquoi pas const :
+La fonction inverser ne peut pas recevoir un const int* car son rôle fondamental est de modifier les valeurs stockées dans le tableau d'origine (en permutant les éléments). 
+Le modificateur const interdit toute modification de la mémoire pointée (*t = ... provoquerait une erreur de compilation). Puisque inverser altère le contenu du tableau, 
+le pointeur doit nécessairement être non-const (int*).
