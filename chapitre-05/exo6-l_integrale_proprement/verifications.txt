@@ -1,0 +1,20 @@
+Intégrale :
+- sin entre 0 et 3.14159 : 2.000000
+- carre entre 0 et 1 : 0.333333
+
+Dérivée :
+- derivee de sin en 0 : 1.000000
+
+Zéro :
+- zero de x * x - 2 entre 1 et 2 : 1.414214
+- sqrt(2) : 1.414213
+
+Arrêt :
+- La boucle de dichotomie s'arrête grâce à un nombre fixe d'itérations (par exemple 50 répétitions), 
+ce qui garantit qu'elle termine toujours en un temps fini, 
+évitant ainsi le risque de boucle infinie causé par la condition stricte f(m) == 0.0 sur des nombres à virgule flottante.
+
+Sans pointeur :
+- Sans pointeur de fonction, si integrale choisissait par un numéro (via un switch), 
+il faudrait modifier et réécrire la fonction integrale à chaque ajout d'une nouvelle fonction mathématique pour intégrer le nouveau cas dans le switch. Avec un pointeur de fonction, 
+la fonction integrale reste totalement générique et n'a pas besoin d'être modifiée lorsqu'on lui passe une nouvelle fonction par son nom.
