@@ -1,0 +1,18 @@
+Devant :
+- Position : {0.0, 5.0} | Réponse de voit : 1 (true)
+
+Côté :
+- Position : {5.0, 0.0} | Réponse de voit : 0 (false)
+
+Derrière :
+- Position : {0.0, -5.0} | Réponse de voit : 0 (false)
+
+Bord :
+- Joueur juste dedans : {2.5, 5.0} | Réponse de voit : 1 (true)
+- Joueur juste dehors : {3.5, 5.0} | Réponse de voit : 0 (false)
+
+Pourquoi 30 :
+- Le champ de vision total du garde fait 60 degrés, répartis symétriquement de chaque côté de son vecteur de direction (soit 30 degrés à gauche et 30 degrés à droite). 
+Par conséquent, pour qu'un joueur soit dans ce cône de vision, l'angle $\theta$ entre le regard du garde et le vecteur menant au joueur doit être compris entre $-30^\circ$ et $+30^\circ$. 
+Comme le produit scalaire de deux vecteurs unitaires est égal au cosinus de leur angle, et que la fonction cosinus est décroissante sur $[0^\circ, 180^\circ]$, un angle inférieur ou égal à $30^\circ$ correspond à un cosinus supérieur ou égal à $\cos(30^\circ)$. 
+C'est pourquoi on compare directement le produit scalaire au cosinus de 30 degrés et non de 60.
