@@ -1,0 +1,25 @@
+Sortie :
+Avant echange pointeurs : x = 1, y = 2
+Apres echange pointeurs : x = 2, y = 1
+Avant echange references : x = 1, y = 2
+Apres echange references : x = 2, y = 1
+Avant echange double : d1 = 3.14, d2 = 6.28
+Apres echange double : d1 = 6.28, d2 = 3.14
+Avant echange char : c1 = A, c2 = B
+Apres echange char : c1 = B, c2 = A
+
+À l'appel :
+- L'appel de la version à pointeurs (echanger(&x, &y)) nécessite de passer explicitement les adresses des variables en utilisant l'opérateur d'adresse (&).
+La fonction manipule ensuite des pointeurs et utilise l'opérateur de déréférencement (*) pour accéder et modifier les valeurs cibles.
+- L'appel de la version à références (echanger(x, y)) s'écrit de la même manière qu'un passage par valeur classique, 
+sans utiliser d'opérateur d'adresse à l'appel. La fonction reçoit directement des alias sur les variables d'origine.
+- Les fonctions spécifiques (echangerDouble et echangerChar) s'utilisent de la même manière par références, 
+en s'adaptant simplement aux types de données manipulés (réels et caractères).
+
+Ce qui change :
+- Ce qui change entre les types, c'est uniquement le type de données manipulé en mémoire (la taille et le format d'encodage des variables : int, double, char), 
+ce qui oblige à adapter la signature de la fonction (ou à utiliser des templates, bien que l'exercice demande des fonctions explicites).
+- Entre la version à pointeurs et la version à références, ce qui change c'est la syntaxe d'appel (présence de & pour récupérer les adresses) et 
+la syntaxe à l'intérieur de la fonction (*p pour accéder à la valeur versus l'utilisation directe de la variable pour la référence).
+- Ce qui reste identique, c'est la logique algorithmique de l'échange (utilisation d'une variable temporaire pour ne pas perdre de données) 
+ainsi que le principe fondamental : permettre à une fonction de modifier durablement les variables de son appelant en agissant directement sur leur emplacement mémoire.
