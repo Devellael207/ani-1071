@@ -1,0 +1,19 @@
+Fuite :
+- sans outil : Le programme s'exécute normalement, affiche le message de fin et se termine sans erreur visible, 
+car le système d'exploitation récupère toute la mémoire allouée à la fermeture du processus.
+- avec outil : AddressSanitizer ne détecte pas les fuites de mémoire pures à l'exécution de cette manière, 
+mais sous un environnement de test ou avec l'option -fsanitize=leak, on obtient généralement : ERROR: LeakSanitizer: detected memory leaks.
+
+Pendant :
+- sans outil : Le programme s'exécute et affiche souvent la valeur stockée (par exemple 42) car la mémoire n'a pas encore été réécrite par le système, 
+illustrant un comportement imprévisible et dangereux.
+- avec outil : ERROR: AddressSanitizer: heap-use-after-free on address...
+
+Double :
+- sans outil : Le programme plante généralement de manière brutale avec un signal d'erreur de segmentation (Segmentation fault) 
+ou une corruption de tas (Heap corruption).
+- avec outil : ERROR: AddressSanitizer: attempting double-free on 0x...
+
+La pire :
+- La faute la plus dangereuse est le pointeur pendant (use-after-free), car elle peut s'exécuter "sans outil" en ayant l'air de fonctionner correctement 
+ou en modifiant silencieusement des données de manière aléatoire. Cela crée des failles de sécurité critiques et des bugs intermittents extrêmement difficiles à traquer et à reproduire en production.
