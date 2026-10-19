@@ -1,0 +1,19 @@
+a :
+- *a = 5; : error: assignment of read-only location '*a'
+- a = &y; : acceptée
+
+b :
+- *b = 5; : acceptée
+- b = &y; : error: assignment of read-only variable 'b'
+
+c :
+- *c = 5; : error: assignment of read-only location '*c'
+- c = &y; : error: assignment of read-only variable 'c'
+
+Règle :
+- Lorsque le const est placé avant l'étoile (comme dans const int*), 
+il protège la valeur pointée (la variable cible en lecture seule) : il est interdit de modifier *p, 
+mais le pointeur lui-même peut être réassigné pour pointer vers une autre adresse.
+- Lorsque le const est placé après l'étoile (comme dans int* const), 
+il protège le pointeur lui-même : son adresse ne peut plus changer après l'initialisation,
+ mais la valeur de la variable pointée reste modifiable.
