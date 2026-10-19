@@ -1,0 +1,38 @@
+    
+             ####             
+            ######            
+           ########           
+           ########           
+           ########           
+           ########           
+            ######            
+             ####             
+                              
+                                                                                
+                                                                                
+                                       ##                                       
+                                    ########                                    
+                                  ############                                  
+                                 ##############                                 
+                                ################                                
+                                ################                                
+                               ##################                               
+                               ##################                               
+                               ##################                               
+                              ####################                              
+                              ####################                              
+                               ##################                               
+                               ##################                               
+                               ##################                               
+                                ################                                
+                                ################                                
+                                 ##############                                 
+                                  ############                                  
+                                    ########                                    
+                                       ##                                       
+                                                                                
+      Qui possède :
+- L'image `img1` (de taille 30x10) est créée et possédée par la fonction `main` (via l'appel de `creerImage` à la ligne où elle est initialisée). 
+Elle est ensuite rendue/libérée par un appel explicite à `detruireImage(img1)` dans `main`.
+- L'image `img2` (de taille 80x24) est également créée et possédée par la fonction `main` (via `creerImage`), 
+puis rendue et nettoyée par un appel final à `detruireImage(img2)` pour éviter toute fuite mémoire.                                                    
