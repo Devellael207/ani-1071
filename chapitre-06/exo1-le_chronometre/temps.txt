@@ -1,0 +1,45 @@
+POUR CEUX DEVOIR IL ETAIT QUESTION DE LANCER TOUR APRES TOURS UN CHRONOMETRE
+SUIVANT DES PERIODES D'OPTIMISATION BIEN PRECIS DE PLUS EN PLUS ELEVE
+(O0 ET O2) ,PUIS DE REGARDER LE TEMPS DONNER PAR LES PRINTF ISSU 
+DES 5 TESTS SUCCESIF:
+#pour (O0) les resultats afficher apres chronometre est:
+- la valeur total est:Total : 500000500000
+-les trois durer mesurer sont:
+1-Duree boucle : 0.000000 secondes
+2-Duree boucle : 0.000873 secondes
+3-Duree boucle : 0.000935 secondes
+# pour(O2) les resultats afficher apres chronometre est:
+-la valeur total est:Total : 500000500000
+-les  trois valeur mesurer sont:
+1-Duree boucle : 0.000000 secondes
+2-Duree boucle : 0.000000 secondes
+3-Duree boucle : 0.000000 secondes
+# pour(un printf) nous avons:
+pour(O0):
+--- Mesures des printf ---
+Test printf 1
+  -> Duree : 0.000413 s
+Test printf 2
+  -> Duree : 0.000374 s
+Test printf 3
+  -> Duree : 0.000189 s
+Test printf 4
+  -> Duree : 0.000318 s
+Test printf 5
+  -> Duree : 0.001878 s 
+  pour (O2) nous avons:
+  --- Mesures des printf ---
+Test printf 1
+  -> Duree : 0.000413 s
+Test printf 2
+  -> Duree : 0.000374 s
+Test printf 3
+  -> Duree : 0.000189 s
+Test printf 4
+  -> Duree : 0.000318 s
+Test printf 5
+  -> Duree : 0.001878 s
+  #le plus cher:En mode -O2, la boucle tombe à zéro
+   car le compilateur calcule le résultat à l'avance et supprime les calculs inutiles à l'exécution.
+   on conclue donc que,La fonction printf est beaucoup plus coûteuse en temps que la boucle mathématique,
+    car elle réalise des entrées/sorties  vers le terminal
