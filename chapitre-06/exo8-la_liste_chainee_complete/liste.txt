@@ -1,0 +1,32 @@
+Sortie :
+--- CONSTRUCTION DE LA LISTE ---
+Liste initiale : [10, 20, 30, 40, 50]
+Nombre de elements : 5
+
+--- TEST RETIRER ---
+Retrait de 10 (en tete) : [20, 30, 40, 50]
+Retrait de 30 (au milieu) : [20, 40, 50]
+Retrait de 999 (absent) : [20, 40, 50]
+
+--- TEST INVERSER ---
+Liste inversee : [50, 40, 20]
+
+Vivants : 3
+
+--- TEST LIBERER ---
+Vivants apres liberation : 0
+
+Vivants :
+3
+0
+
+Par valeur :
+Si on écrit "Noeud suivant;" (sans astérisque de pointeur), le compilateur refuse la compilation car la structure "Noeud" 
+est en cours de définition (type incomplet). En revanche, écrire "Noeud* suivant;" (avec l'astérisque) est parfaitement 
+accepté car le compilateur sait qu'un pointeur a toujours la même taille fixe en mémoire (par exemple 8 octets sur une architecture 64 bits)
+indépendamment de la taille totale de la structure elle-même.
+
+Pourquoi :
+Le compilateur refuse d'utiliser directement "Noeud suivant;" à l'intérieur de la définition de "Noeud" car cela créerait une structure de taille infinie (un nœud qui contient un autre nœud complet, 
+qui lui-même contient un autre nœud, etc.). Le pointeur "Noeud* suivant;" est accepté car il stocke uniquement l'adresse mémoire (une référence de taille fixe vers un autre emplacement)
+ce qui permet de lier les éléments de manière dynamique sans boucle infinie dans l'allocation de la mémoire.
