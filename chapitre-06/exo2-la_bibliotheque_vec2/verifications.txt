@@ -1,0 +1,15 @@
+Les quatre :
+length({3, 4}) vaut 5 ; dot({1, 0}, {0, 1}) vaut 0 ; rotate({1, 0}, radians(90)) vaut {0, 1} à un epsilon près ; reflect({1, -1}, {0, 1}) vaut {1, 1}.
+
+Mes essais :
+add({1, 2}, {3, 4}) = {4, 6}
+sub({5, 5}, {2, 1}) = {3, 4}
+scale({2, 3}, 4) = {8, 12}
+normalize({3, 4}) = {0.60000000000000009, 0.80000000000000004}
+lerp({0, 0}, {10, 10}, 0.5) = {5, 5}
+perp({1, 2}) = {-2, 1}
+
+Epsilon :
+rotate({1, 0}, radians(90)) donne les deux membres : x = 6.123233995736766e-17 et y = 1.
+L'epsilon choisi est 1e-15 car les fonctions trigonométriques (cos et sin) basées sur notre constante Pi possèdent une infime imprécision de calcul, 
+ce qui fait que le membre x n'est pas strictement égal à 0 mais à une valeur infini de l'ordre de 10^-17.
