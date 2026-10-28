@@ -1,0 +1,13 @@
+D'apres le programme et apres compilation on obtient les etiquette suivant:
+-v0 : 7.6765877844390772
+-1/120 : 3.0121111979927623
+-1/30 : 3.0485987150000003
+-Mon pas : 3.0036329431780415
+-L'écart vient : entièrement de la façon dont l'ordinateur fait la simulation. 
+En maths et en théorie, la formule nous donne exactement 3 mètres de haut. 
+Mais comme l'ordinateur ne peut pas calculer le mouvement en continu, 
+il découpe le temps en petits morceaux (les pas de temps dt). Avec un pas assez large comme 1/30 de seconde, 
+la simulation fait des sauts un peu trop grands et dépasse légèrement la réalité, ce qui monte à environ 3,04 m. 
+Quand je réduis le pas pour le rendre minuscule (comme 1/120 ou encore plus petit avec mon propre pas), 
+les calculs se rapprochent beaucoup plus du mouvement réel et la hauteur redescend pile vers les 3 mètres. 
+Ça prouve bien que la formule du saut de départ est juste, et que le petit décalage vient uniquement des arrondis de la simulation numérique.
