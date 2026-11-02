@@ -1,0 +1,17 @@
+Messages :
+default.cpp:12:7: error: no matching constructor for initialization of 'P'
+default.cpp:13:7: error: no matching constructor for initialization of 'P [10]'
+
+Avec a(0) :
+x.a = 0
+
+Avec = default :
+x.a = 0
+x.a =  239074232
+x.a = 0
+
+Pourquoi :
+Le constructeur sans paramètre a disparu car dès qu'on définit un constructeur personnalisé avec des arguments, le compilateur ne génère plus automatiquement le constructeur par défaut.
+
+Pourquoi :
+La valeur de x.a avec = default change d'un lancement à l'autre car la mémoire n'est pas initialisée par défaut (valeur indéterminée / résidu en mémoire).
