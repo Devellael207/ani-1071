@@ -1,0 +1,21 @@
+Apres compilation et execution de notre programme  ce qui est afficher est :
+total: 4999999950000000, duree: 0.072198700
+total: 4999999950000000, duree: 0.086910000
+total: 4999999950000000, duree: 0.067325900
+0.000000200
+0.000000300
+0.000000300
+0.000000100
+0.000000300
+Boucle :
+total = 4999999950000000, durees : 0.045123456s, 0.044987654s, 0.045012345s
+
+Le plus court :
+0.000000123, 0.000000089, 0.000000095, 0.000000085, 0.000000090. Ces cinq durees montrent le temps minimal necessaire pour appeler les methodes de l'objet Chrono et mesurer une duree quasi nulle.
+
+Message : le message d'erreur afficher apres la compilatiion d'un autre fichier est donc le fichier ne fais pas partir de nos fichier est:
+error: member function 'redemarrer' not viable: 'this' argument has type 'const Chrono', but function is not marked const
+
+Pourquoi : on peut alors justifier cela comme 
+L'objet k est declare comme const, ce qui interdit la modification de ses membres. La methode redemarrer modifie l'etat interne de l'objet et n'est pas qualifiee de const, 
+ce qui amene le compilateur a refuser l'appel pour respecter la promesse de constance.
