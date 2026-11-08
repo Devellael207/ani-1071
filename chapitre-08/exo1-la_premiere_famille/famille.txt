@@ -1,0 +1,50 @@
+Apres compilation et execution de notre programme ,le resultat afficer à 
+l'ecran est le suivant:
+clang++ -Wall -Wextra -O0 famille.cpp -o famille
+PS C:\Users\TECH-STORE CMR\Documents\ani-1071\chapitre-08\exo1-la_premiere_famille> ./famille
+Taille de Vec2 : 16 octets
+Taille de const char* : 8 octets
+Taille de Entite : 24 octets
+Taille de Ennemi : 32 octets
+Taille de Joueur : 32 octets
+
+Ennemi cree avec 15 points de degats.
+Joueur cree avec 100 points de vie.
+    Alors d'aprs les differents etiquette demnader on a :
+-la taille: on les tailles pour cette struture et ces classes sont;
+ clang++ -Wall -Wextra -O0 famille.cpp -o famille
+PS C:\Users\TECH-STORE CMR\Documents\ani-1071\chapitre-08\exo1-la_premiere_famille> ./famille
+Taille de Vec2 : 16 octets
+Taille de const char* : 8 octets
+Taille de Entite : 24 octets
+Taille de Ennemi : 32 octets
+Taille de Joueur : 32 octets
+
+-Ecarts:
+*Pour vec2: on sait que le type 'double'a une taille de 8 octets et dans la structure "vec2" on declarer (double x,y) 
+qui declare x et y d'où 8+8=16 octets qui vaut donc exactement la taille de 'vec2' comme le montre le compilateur cela signifie 
+aussi que le compilateur n'a rien ajouter a cela.
+*Pour const char*:ici on est sur un systeme de 64 bits ,sachant que en tant normale le type 'char' vaut '1 octets' mais vu qu'il 
+s"agit d'un pointeur 'char*' alors la taille de base pour tout pointeur vaut 8 octets.
+*Pour Entite: la classe "Entite" contient (vec2 position et const char* nom) et qui valent respectivement chacun 16 et 8 octect
+d'où 16+8=24 octects cela signifie qu'il y'a pas eu de 'bourage' car  ici la plus grande taille defini est  de type double(8 octets)
+le compilateur n'a donc pas besion de comblé(rambler) quoi que ce soit d'où cette taille exacte.
+*Pour Ennemi:la classe'Ennemi' est la descendante de "Entite" c'est-à-dire sa 'fille' d'où elle "Herite" de tout ce qui est de sa mere
+"Entite" au quelle s'ajoute ces proprietes privé a elle meme(private:int degats;) où cette propriete a elle de type "int" vaut 8 octets
+alors  on 24+8=32  octets qui justifie donc la taille de la classe Ennemi mesurer par le compilateur.
+*Pour Joueur:la class "Joueur"est fille de "Entite" et plus sa propriete personnel a elle(private:double vie;) qui vaut pour le type 
+"double" 8 octets  on a alors 24+8=32 octets d'où cette taille.
+
+-Message: lorsqu'on retire les (/*) de "monEnnemi.position.x = 5.0; " et qu'elle devient alors active dans le code source dans le fichier famille.cpp
+puis on recompile le programme alors message d'erreur afficher est:
+ error: 'position' is a protected member of 'Entite'
+   58 |     monEnnemi.position.x = 5.0; 
+      |               ^
+famille.cpp:8:10: note: declared protected here
+    8 |     Vec2 position;
+      |          ^
+1 error generated.
+- Pourquoi la méthode d'Ennemi a fonctionné : Les membres déclarés en 'protected' dans une classe de base sont accessibles à l'intérieur des classes dérivées (les classes filles). 
+La méthode de la classe Ennemi fait partie de la famille, elle a donc le droit de modifier directement 'position'.
+- Pourquoi l'accès depuis le main a été refusé : Le code situé dans 'main' est extérieur à la hiérarchie de classes. Il n'a aucun droit d'accès aux membres ecris en  'protected', 
+ce qui provoque l'erreur de compilation du compilateur.
