@@ -1,0 +1,80 @@
+Apres compilation et execution de nos code source "avec(virtual)" et "sans(virtual)" dans les fichiers respectif "virtuel.cpp" et "virtuelcopy.cpp":
+
+-Avec 'virtual': Dans ce cas après compilation et execution on a:
+ .\virtuelcopy                                       
+Compteur Ennemi  : 10
+Compteur Fantome : 30
+Compteur Robot   : 20
+ces resultat ci-dessous montre que le "polymorphisme"est en action:
+Compteur Ennemi : 10 Il n'y a qu'un seul objet de type de base pur dans le tableau (tab[0] = new Ennemi()).
+Il est appelé 10 fois dans la boucle principale (1*10 = 10).
+*Compteur Fantome : 30
+Il y a trois objets de type Fantome dans votre tableau (tab[3], tab[4], tab[5]).Chacun est appelé 10 fois, ce qui donne (3*10 = 30).
+*Compteur Robot : 20Il y a deux objets de type Robot dans votre tableau (tab[1], tab[2]).Chacun est appelé 10 fois, ce qui donne (2*10 = 20).
+Conclusion :Grace au mot-clé virtual, le programme a fait de la liaison dynamique : lorsqu'il a parcouru le tableau de pointeurs de type Ennemi*, il a su regarder le type réel
+ de chaque objet en mémoire (Robot, Fantome, ou Ennemi) pour exécuter la bonne version de la méthode deplacer().
+
+-sans'virtual':Dans ce cas après compilation et execution on a :
+.\virtuelcopy                                       
+compteur Ennemi  : 60
+Compteur Fantome : 0
+Compteur Robot   : 0
+Ces résultats correspondent au cas où le polymorphisme est désactivé (c'est-à-dire lorsque le mot-clé virtual est mis en commentaire dans la classe Ennemi, 
+comme c'était visible sur votre capture d'écran).
+*Compteur Ennemi : 60
+Sans le mot-clé virtual, le compilateur utilise la liaison statique. Cela signifie qu'il se fie uniquement au type déclaré du pointeur dans le tableau (Ennemi*), 
+et non au type réel de l'objet en mémoire.Par conséquent, peu importe qu'il s'agisse d'un Robot ou d'un Fantôme, le programme appelle toujours la fonction deplacer() de la classe de base Ennemi.
+Comme il y a 6 objets au total dans votre tableau, et qu'ils sont appelés 10 fois chacun dans la boucle, la fonction Ennemi::deplacer() a été exécutée 60 fois (
+6×10=60).
+*Compteur Fantome : 0
+Étant donné que la liaison est statique, le programme ne va jamais consulter ni exécuter la méthode deplacer() de la classe Fantome. Le compteur reste donc bloqué à 0.
+*Compteur Robot : 0
+Pour la même raison, la méthode deplacer() de la classe Robot n'est jamais appelée par le tableau de pointeurs Ennemi*. Le compteur reste donc lui aussi à 0.
+Conclusion
+Ces résultats prouvent qu'en l'absence de virtual, le programme est incapable de faire la différence entre les différents types d'ennemis stockés dans le tableau : tout le monde est traité comme un simple Ennemi. 
+C'est exactement l'inverse de l'exemple précédent !
+De plus pourque le programme compile sans erreur il a fallu :
+-transformer les 'double dt' en 'double'
+-enlever ou mettre en commentaire 'override'
+-enlever les "void(dt)"
+les refus observer sont:
+-clang++ -Wall -Wextra virtuelcopy.cpp -o virtuelcopy
+virtuelcopy.cpp:24:30: error: only virtual member functions can be marked 'override'
+   24 |     void deplacer(double dt) override {
+      |                              ^~~~~~~~
+virtuelcopy.cpp:33:30: error: only virtual member functions can be marked 'override'
+   33 |     void deplacer(double dt) override {
+      |                              ^~~~~~~~
+
+2 errors generated.
+PS C:\Users\TECH-STORE CMR\Documents\ani-1071\chapitre-08\exo4-avec_et_sans_virtual> clang++ -Wall -Wextra virtuelcopy.cpp -o virtuelcopy
+PS C:\Users\TECH-STORE CMR\Documents\ani-1071\chapitre-08\exo4-avec_et_sans_virtual> .\virtuelcopy
+
+ *  History restored 
+
+PS C:\Users\TECH-STORE CMR\Documents\ani-1071\chapitre-08\exo4-avec_et_sans_virtual> clang++ -Wall -Wextra virtuelcopy.cpp -o virtuelcopy
+virtuelcopy.cpp:24:26: warning: unused parameter 'dt' [-Wunused-parameter]
+   24 |     void deplacer(double dt) /*override*/ {
+      |                          ^
+virtuelcopy.cpp:33:26: warning: unused parameter 'dt' [-Wunused-parameter]
+   33 |     void deplacer(double dt)/* override */{
+      |                          ^
+
+-Faut de frappe: 
+les differentes fautes observer lors de la compilation:
+lorsque retire seulement le "virtual" les erreurs sont:
+ virtuela.cpp:24:30: error: only virtual member functions can be marked 'override'
+   24 |     void deplacer(double dt) override {
+      |                              ^~~~~~~~
+virtuela.cpp:33:30: error: only virtual member functions can be marked 'override'
+   33 |     void deplacer(double dt) override {
+      |                              ^~~~~~~~
+2 errors generated. 
+Mais on observe que ce n'est pas tout ces erreurs seulement,cela signifie que certain erreurs passe en silencieux  telque le "deplacement qui n'est 
+pas specifier dans ce cas ". et les compteurs qui en decoulent sont:
+compteur Ennemi  : 60
+Compteur Fantome : 0
+Compteur Robot   : 0. pour le 'sans virtual' et pour 'avec virtual' on a:
+Compteur Ennemi  : 10
+Compteur Fantome : 30
+Compteur Robot   : 20.
