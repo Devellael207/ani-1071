@@ -1,0 +1,142 @@
+Systèmes :
+Le système physique parcourt l'ensemble des indices de 0 à MAX et met à jour la position de chaque entité possédant simultanément les composants Transform et Corps en appliquant la gravité et le pas de temps dt.
+ Le système de rendu parcourt également les entités et convertit leurs coordonnées logiques en coordonnées graphiques inversées (H - 1 - y) pour les dessiner dans le tampon textuel si elles possèdent Transform et Sprite. 
+ Chacun retourne exactement le nombre total d'entités valides qu'il a traitées lors de son exécution.
+
+Numéros :
+Les numéros d'entités recyclés par la free list correspondent aux indices libérés lors de la destruction (5, 10, 15, 20, 25, etc.), 
+car la politique de la pile de la free list réutilise en priorité les emplacements les plus récemment libérés en les plaçant en tête de liste (LIFO). Ainsi, 
+les cinq nouvelles entités créées récupèrent directement les premiers indices disponibles laissés vacants dans le pool.
+
+Image :
+
+--- Debut de la simulation initiale ---
+                   .                   .
+                  .                   . 
+                 .                   .  
+                .                   .   
+               .                   .    
+X X X X X X X X X X X X X X X X X X X X 
+             .                   .      
+            .                   .       
+           .                   .        
+     oooooooooooooooooooo     .         
+         .                   .          
+        .                   .           
+       .                   .            
+      .                   .             
+     .                   .              
+    .                   .               
+   .                   .                
+  .                   .                 
+ .                   .                  
+.                   .                   
+Pas 1 -> Physique traites : 60 | Rendu traites : 100
+                   .                   .
+                  .                   . 
+                 .                   .  
+                .                   .   
+               .                   .    
+X X X X X X X X X X X X X X X X X X X X 
+             .                   .      
+            .                   .       
+           .                   .        
+     oooooooooooooooooooo     .         
+         .                   .          
+        .                   .           
+       .                   .            
+      .                   .             
+     .                   .              
+    .                   .               
+   .                   .                
+  .                   .                 
+ .                   .                  
+.                   .                   
+Pas 2 -> Physique traites : 60 | Rendu traites : 100
+                   .                   .
+                  .                   . 
+                 .                   .  
+                .                   .   
+               .                   .    
+X X X X X X X X X X X X X X X X X X X X 
+             .                   .      
+            .                   .       
+           .                   .        
+     oooooooooooooooooooo     .         
+         .                   .          
+        .                   .           
+       .                   .            
+      .                   .             
+     .                   .              
+    .                   .               
+   .                   .                
+  .                   .                 
+ .                   .                  
+.                   .                   
+Pas 3 -> Physique traites : 60 | Rendu traites : 100
+                   .                   .
+                  .                   . 
+                 .                   .  
+                .                   .   
+               .                   .    
+              .                   .     
+X X X X X X X.X X X X X X X X X X.X X X 
+            .                   .       
+           .                   .        
+          .                   .         
+     oooooooooooooooooooo    .          
+        .                   .           
+       .                   .            
+      .                   .             
+     .                   .              
+    .                   .               
+   .                   .                
+  .                   .                 
+ .                   .                  
+.                   .                   
+Pas 4 -> Physique traites : 60 | Rendu traites : 100
+                   .                   .
+                  .                   . 
+                 .                   .  
+                .                   .   
+               .                   .    
+              .                   .     
+X X X X X X X.X X X X X X X X X X.X X X 
+            .                   .       
+           .                   .        
+          .                   .         
+     oooooooooooooooooooo    .          
+        .                   .           
+       .                   .            
+      .                   .             
+     .                   .              
+    .                   .               
+   .                   .                
+  .                   .                 
+ .                   .                  
+.                   .                   
+Pas 5 -> Physique traites : 60 | Rendu traites : 100
+
+Creation de 5 nouvelles entites (recyclage par la free list) : 50 45 40 35 30 
+
+                   .                   .
+                  .                   . 
+                 .                   .  
+                .                   .   
+                                        
+              .                   .     
+             .                   .      
+X X X X X X X X X X X X X X X X X X X X 
+           .                   .        
+          N                             
+     oooooooooooooooooooo    .          
+        .                   .           
+       .                   .            
+      .                   .             
+                                        
+    .                   .               
+   .                   .                
+  .                   .                 
+ .                   .                  
+.                                       
+Dernier pas -> Physique traites : 57 | Rendu traites : 95
