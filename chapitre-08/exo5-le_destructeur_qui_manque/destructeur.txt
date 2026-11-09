@@ -1,0 +1,44 @@
+Apres compilation et execution du progamme "avec" ou "sans" virtual:
+-Avec virtual: alors le compilateur affiche;
+--- Test avec Ennemi* pointant vers Fantome ---
+~Fantome (taille du vecteur : 1000)
+~Trace
+~Ennemi
+
+--- Test avec Fantome* direct ---
+~Fantome (taille du vecteur : 1000)
+~Trace
+~Ennemi
+
+-Sans virtual: on a alors:
+--- Test avec Ennemi* pointant vers Fantome ---
+~Ennemi
+
+--- Test avec Fantome* direct ---
+~Fantome (taille du vecteur : 1000)
+~Trace
+~Ennemi
+
+-Avertissement: le compilateur montre lorsqu'on compile sans virtual les avertissement et avec ou sans le "override" suivant:
+error: only virtual member functions can be marked 'override'
+   34 |     ~Fantome() override {
+      |                ^~~~~~~~
+destructeur.cpp:43:5: warning: delete called on non-final 'Ennemi' that has virtual functions but non-virtual destructor [-Wdelete-non-abstract-non-virtual-dtor]
+   43 |     delete e; // Si le destructeur n'est pas virtual, ~Fantome() et ~Trace() ne seront jamais appelés !
+      |     ^
+destructeur.cpp:48:5: warning: delete called on non-final 'Fantome' that has virtual functions but non-virtual destructor [-Wdelete-non-abstract-non-virtual-dtor]
+   48 |     delete f;
+      |     ^
+2 warnings and 1 error generated.
+PS C:\Users\TECH-STORE CMR\Documents\ani-1071\chapitre-08\exo5-le_destructeur_qui_manque> clang++ -Wall -Wextra destructeur.cpp -o destructeur
+destructeur.cpp:43:5: warning: delete called on non-final 'Ennemi' that has virtual functions but non-virtual destructor [-Wdelete-non-abstract-non-virtual-dtor]
+   43 |     delete e; // Si le destructeur n'est pas virtual, ~Fantome() et ~Trace() ne seront jamais appelés !
+      |     ^
+destructeur.cpp:48:5: warning: delete called on non-final 'Fantome' that has virtual functions but non-virtual destructor [-Wdelete-non-abstract-non-virtual-dtor]
+   48 |     delete f;
+      |     ^
+2 warnings generated.
+
+-Pourquoi: Alors dans cette partie ,il est question de dire ce qui n'est jamais detruit: c'est le Test avec Fantome direct,alors on peut dire de la ,Si le destructeur 
+n'est pas virtual, ~Fantome() et ~Trace() ne seront jamais appelés !
+
