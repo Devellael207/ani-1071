@@ -1,0 +1,22 @@
+Apres compilation et execution du code source (tranches.cpp) alors le resultat afficher à l'ecran est:
+
+entite
+ennemi
+ennemi
+Taille Entite : 8
+Taille Ennemi : 16
+Alors de là on peu avoir les 03 etiquettes suivantes:
+-sorties: les 03 lignes affichées par le compilateur suivant nos 3 fonctions defini:
+>entite
+>ennemi
+>ennemi
+
+-Tailles: En ceux qui concerne les tailles mesurer par le compilateur nous avons:
+>Taille Entite : 8 (octets)
+>Taille Ennemi : 16 (octets)
+
+-Pourquoi:
+la fonction qui se trompe parmi les fonctions de passage de l'objet à reçu "entité"  lors du passage de 'valeur' (cela dis cela a provoquer un
+decoupage d'où l'affichage de "entité") on dis alors dans ce cas que cette fonction a perdu "l'objet" qui est"Ennemi" par contre pour les 
+fonction qui utilise le passage par référence ou par pointeur "preserve l'objet qui est 'ennemi'" c'est donc le resultat observer au 
+2 et 3 ligne afficher par le compilateur ce qui n'est pas le cas de la 1 er ligne.
