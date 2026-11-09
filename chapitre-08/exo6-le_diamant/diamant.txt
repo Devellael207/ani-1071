@@ -1,0 +1,43 @@
+--- Tailles avec heritage virtuel ---
+sizeof(Entite)  : 16
+sizeof(Mobile)  : 40
+sizeof(Visible) : 32
+sizeof(Ennemi)  : 56
+Position via Mobile& : 3
+Position via Visible&: 3
+
+--- Tailles sans heritage virtuel ---
+sizeof(Entite)  : 16
+sizeof(Mobile)  : 32
+sizeof(Visible) : 24
+sizeof(Ennemi)  : 56
+Position via Mobile& : 6.95239e-310
+Position via Visible&: 6.95157e-310
+
+-Message : le message afficher apres compilation sans virtual est:
+ diamant.cpp: In function 'int main()':
+diamant.cpp:25:7: error: request for member 'position' is ambiguous
+   25 |     e.position.x = 3.0;
+      |       ^~~~~~~~
+  • there are 2 candidates
+    • candidate 1: 'Vec2 Entite::position'
+      diamant.cpp:7:10:
+          7 |     Vec2 position;
+            |          ^~~~~~~~
+    • candidate 2: 'Vec2 Entite::position'Tailles :
+    -Tailles:
+Sans héritage virtuel : Entite (16), Mobile (32), Visible (24), Ennemi (56). Ennemi contient deux instances complètes d'Entite.
+Avec héritage virtuel : Entite (16), Mobile (40), Visible (32), Ennemi (56). Ennemi contient des pointeurs de table virtuelle (vptr/vtable) pour partager l'unique sous-objet Entite.
+Le problème du « diamant » en C++ survient lorsqu'une classe fille (Ennemi) hérite de deux classes parentes (Mobile et Visible) qui dérivent elles-mêmes d'un même grand-parent (Entite). 
+Sans héritage virtuel, l'objet Ennemi contient deux copies distinctes de Entite (pesant 56 octets au total), ce qui crée une ambiguïté lors de l'accès à un membre comme position (le compilateur ne sachant pas quelle copie modifier).
+, Avec l'héritage virtuel (virtual public Entite), le compilateur fusionne ces deux sous-objets en une seule instance partagée d' Entite. Bien que la taille totale de l'objet Ennemi reste à 56 octets, sa structure interne change : les classes intermédiaires
+ intègrent des pointeurs de tables virtuelles (vptr) de 8 octets pour gérer cette indirection, 
+permettant ainsi aux références Mobile& et Visible& de pointer exactement vers la même adresse mémoire unique. Cependant, ce motif d'héritage complexe et source de surcoût est généralement évité au profit de la composition, qui privilégie l'inclusion directe de membres pour un code plus propre, prévisible et performant.
+-Deux positions :
+Sans héritage virtuel : m.position et v.position pointent vers deux variables distinctes en mémoire (deux sous-objets Entite séparés).
+Avec héritage virtuel : m.position et v.position pointent exactement vers la même adresse mémoire (le sous-objet virtuel unique Entite).
+
+-Pourquoi jamais :
+L'héritage en diamant introduit une complexité inutile, du surplus mémoire (pointeurs vptr) et des indirections à l'accès.
+Il est préférable de privilégier la composition d'objets (inclure des membres) plutôt que de multiplier les axes d'héritage.
+En C++ moderne, la composition rend le code beaucoup plus clair, prévisible et performant sans les pièges du diamant.
