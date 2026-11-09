@@ -1,0 +1,82 @@
+Apres compilation ainsi que le test des 6 tentatives dans(main et Derivee et aussi la fonction libre)
+les 03 etiquettes demander :
+
+portes.cpp:23:11: error: 'privee' is a private member of 'Base'
+   23 |           privee = 30; 
+      |           ^
+portes.cpp:7:9: note: declared private here
+    7 |     int privee;
+      |         ^
+portes.cpp:31:8: error: 'protegee' is a protected member of 'Base'
+   31 |      b.protegee = 5;
+      |        ^
+portes.cpp:5:9: note: declared protected here
+    5 |     int protegee;
+      |         ^
+portes.cpp:43:8: error: 'protegee' is a protected member of 'Base'
+   43 |      d.protegee = 2; 
+      |        ^
+portes.cpp:5:9: note: declared protected here
+    5 |     int protegee;
+      |         ^
+portes.cpp:48:8: error: 'privee' is a private member of 'Base'
+   48 |      d.privee = 3; 
+      |        ^
+portes.cpp:7:9: note: declared private here
+    7 |     int privee;
+      |         ^
+4 errors generated.
+
+-Tableau: ici on ecrire d'apres les resultats de compilation de nos 6 tentatives
+ceux qui on ete refuser et ce qui on été accepter:
+*Tentative 1 : Accès au membre public depuis la classe dérivée
+        publique = 10; compilation:reussi
+
+*Tentative 2 : Accès au membre protégé depuis la classe dérivée
+        protegee = 20; compilation:reussi
+
+*Tentative 3 : Accès au membre privé depuis la classe dérivée
+          privee = 30; compilation:refusée
+* Tentative 4 : Accès au membre public depuis main
+    d.publique = 1; compilation:reussi
+
+*Tentative 5 : Accès au membre protégé depuis main
+     d.protegee = 2; compilation :refusée 
+    
+*Tentative 6 : Accès au membre privé depuis main
+     d.privee = 3; compilation :refusée 
+
+-Messages: Pour les tentatives refusée les  messages d'erreur renvoyer ainsi que les
+lignes correspondantes sont:
+*privee=30 :portes.cpp:23:11: error: 'privee' is a private member of 'Base'
+   23 |           privee = 30; 
+      |           ^
+      |    
+*d.protegee : portes.cpp:43:8: error: 'protegee' is a protected member of 'Base'
+   43 |      d.protegee = 2; 
+      |        ^
+*d.privee=3 : portes.cpp:48:8: error: 'privee' is a private member of 'Base'
+   48 |      d.privee = 3; 
+      |
+      on peut alors dire:
+      ici nous allons expliquer tout ce qui arriver lorsque on utilse les membres
+selon chaque espace (interieur ou exterieur à la famille ):
+** A l'interieur de la famille:Dans la classe "Derivee" on observe un seul refus,pourquoi ? c'est tout simplement parceque le membre
+(privee=30) ayant ete appeler en "Derivee" bien qu'etant une fille de la classe mère"Base" parceque ce membre est declarer 
+en "private" ne peut etre transmis a aucun descendant de la classe "Base" car elle est un membre propre et donc unique a la classe "Base"
+** A l'exterieur de la famille :Dans "main" on observe 2 refus par le compilateur,pourquoi ? car les membres(protegee et privee) ayant été 
+declarer respectivement en "protected" et "private" dans la classe mère ne peut pas partager son contenu "avec quelqu'un qui n'est pas de sa famille"
+c'est-à-dire quelque de l'exterieur comme 'main' sauf si ce membre est declarer en 'public"
+
+-Fonction libre:
+De plus on note aussi l'erreur signaler pour la fonction libre:void  soigner(Base& b) 
+ portes.cpp:31:8: error: 'protegee' is a protected member of 'Base'
+   31 |      b.protegee = 5;
+   cette erreur est du au fait que le membre"protgee" est definir en 'protected' dans la classe "Base " et ne peut pas etre partager sur un objet Base reçu en paramètre
+   CONCLUISON:
+   pour chaque propriete on pourra dire selon son utilisation:
+   -public --->Tout le monde a y acces qu'il soit de la famille ou non
+   -protected ----> seule les descandant issu de la classe mère on y l'acces on parle donc des classes "filles"
+   -private ---->personne n'y a acces meme pas les descendant,on dit quelle est propre à la classe auquelle elle est rattacher.
+   NB:Pour voir les erreurs montrer par le compilateur il faudrais retirer les commentaires pour chaque tentative mis en commentaires
+   dans le code source (portes.cpp),"/*".
