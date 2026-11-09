@@ -30,8 +30,12 @@ s"agit d'un pointeur 'char*' alors la taille de base pour tout pointeur vaut 8 o
 d'où 16+8=24 octects cela signifie qu'il y'a pas eu de 'bourage' car  ici la plus grande taille defini est  de type double(8 octets)
 le compilateur n'a donc pas besion de comblé(rambler) quoi que ce soit d'où cette taille exacte.
 *Pour Ennemi:la classe'Ennemi' est la descendante de "Entite" c'est-à-dire sa 'fille' d'où elle "Herite" de tout ce qui est de sa mere
-"Entite" au quelle s'ajoute ces proprietes privé a elle meme(private:int degats;) où cette propriete a elle de type "int" vaut 8 octets
-alors  on 24+8=32  octets qui justifie donc la taille de la classe Ennemi mesurer par le compilateur.
+"Entite" au quelle s'ajoute ces proprietes privé a elle meme(private:int degats;) où cette propriete a elle de type "int" vaut 4 octets
+alors  on 24+4=32  octets qui montre que pour 28 octets en temps normale on a 32 octets qui nous est donner par le compilateur.cela signifie qu'il 
+y'a et bien un bourage qui est de 4 octets.Par la suite pour un test on a rajouter un deuxieme 'int'(int chance) à la classe Ennemi  et malgrés tout on obtient 
+toujours le meme resultat ? qui est de 32 octets :on a deduit qu'il y'a eu un ramblage du vide qui existe deja apres l'ajout du deuxieme 'int'.
+le membre de la classe mere "Entite" qui exige l'alignement le plus grands est un membre de donnée(const char*) car un pointeur pèse 8 octets et exige donc un alignemnet 
+ sur 8 octets d'où cette taille donner par le compilateur.
 *Pour Joueur:la class "Joueur"est fille de "Entite" et plus sa propriete personnel a elle(private:double vie;) qui vaut pour le type 
 "double" 8 octets  on a alors 24+8=32 octets d'où cette taille.
 
